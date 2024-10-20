@@ -9,15 +9,16 @@ class NewsService {
         'https://newsapi.org/v2/top-headlines?apiKey=4f808119ea5249b39ff6b21ae0caa11e&category=general');
 
     Map<String, dynamic> jsonData = response.data;
-    List<dynamic> articlesData = jsonData['articles'];
-    List<ArticleModel> articles = [];
-    for (var article in articlesData) {
+    List<dynamic> articles= jsonData['articles'];
+    List<ArticleModel> articlesList = [];
+
+    for (var article in articles) {
       ArticleModel articleModel = ArticleModel(
-        image: article['image'],
+        image: article['urlToImage'],
         title: article['title'],
-        subTitle: article['subTitle'],
+        subTitle: article['surlToImage'],
       );
-      articles.add(articleModel);
+      articlesList.add(articleModel);
     }
   }
 }
