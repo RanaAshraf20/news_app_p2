@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/category_model.dart';
 import 'package:news_app/widgets/categories_list_view.dart';
-import 'package:news_app/widgets/news_tile.dart';
+import 'package:news_app/widgets/news_list_tile_builder.dart';
 
-import 'package:news_app/widgets/news_tile_list_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -53,7 +52,7 @@ class HomeView extends StatelessWidget {
                   height: 32,
                 ),
               ),
-           const NewsTileListView()
+              const NewsTileListViewBuilder()
             ],
           ),
           // child: Column(
