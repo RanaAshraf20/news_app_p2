@@ -5,21 +5,25 @@ class NewsService {
   final dio = Dio();
 
   Future<List<ArticleModel>> generalNews() async {
-    Response response = await dio.get(
-        'https://newsapi.org/v2/top-headlines?apiKey=4f808119ea5249b39ff6b21ae0caa11e&category=general');
+    try {
+      Response response = await dio.get(
+          'https://newsapi.org/v2/top-headlines?apiKey=4f808119ea5249b39ff6b21ae0caa11e&category=general');
 
-    Map<String, dynamic> jsonData = response.data;
-    List<dynamic> articles = jsonData['articles'];
-    List<ArticleModel> articlesList = [];
+      Map<String, dynamic> jsonData = response.data;
+      List<dynamic> articles = jsonData['articles'];
+      List<ArticleModel> articlesList = [];
 
-    for (var article in articles) {
-      ArticleModel articleModel = ArticleModel(
-        image: article['urlToImage'],
-        title: article['title'],
-        subTitle: article['surlToImage'],
-      );
-      articlesList.add(articleModel);
+      for (var article in articles) {
+        ArticleModel articleModel = ArticleModel(
+          image: article['urlToImage'],
+          title: article['title'],
+          subTitle: article['surlToImage'],
+        );
+        articlesList.add(articleModel);
+      }
+      return articlesList;
+    } catch (e) {
+      return [];
     }
-    return articlesList;
   }
 }
