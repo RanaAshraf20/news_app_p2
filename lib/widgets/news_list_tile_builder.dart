@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/article_model.dart';
 import 'package:news_app/services/news_service.dart';
 import 'package:news_app/widgets/news_tile_list_view.dart';
 
-
-class  NewsTileListViewBuilder extends StatelessWidget {
+class NewsTileListViewBuilder extends StatefulWidget {
   const NewsTileListViewBuilder({super.key});
 
- 
+  @override
+  State<NewsTileListViewBuilder> createState() =>
+      _NewsTileListViewBuilderState();
+}
+
+class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
+  var future;
+  @override
+  void initState() {
+    super.initState();
+   future= NewsService().generalNews();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: NewsService().generalNews(),
+    return FutureBuilder<List<ArticleModel>>(
+      future: future,
       builder: (context, snapshot) {
         return NewsTileListView(articles: snapshot.data ?? []);
       },
