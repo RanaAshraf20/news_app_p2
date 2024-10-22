@@ -16,7 +16,7 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
   @override
   void initState() {
     super.initState();
-   future= NewsService().generalNews();
+    future = NewsService().generalNews();
   }
 
   @override
@@ -24,7 +24,17 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
     return FutureBuilder<List<ArticleModel>>(
       future: future,
       builder: (context, snapshot) {
-        return NewsTileListView(articles: snapshot.data ?? []);
+        if (snapshot.hasData) {
+          return NewsTileListView(articles: snapshot.data! );
+        } else if (snapshot.hasError) {
+          return const SliverToBoxAdapter(
+            child: Center(child: Text('oops there is a problem, try later!')),
+          );
+        } else {
+          return const SliverToBoxAdapter(
+            child: Center(child: CircularProgressIndicator()),
+          ); 
+        }
       },
     );
     // return isLoading
