@@ -8,17 +8,24 @@ class NewsTileListView extends StatelessWidget {
   const NewsTileListView({super.key, required this.articles});
 
   final List<ArticleModel> articles;
+  
 
   @override
   Widget build(BuildContext context) {
+
+    // تصفية المقالات التي تحتوي على عنوان فقط
+    final filteredArticles = articles
+        .where((article) => article.title!= "[Removed]")
+        .toList();
+
     return  SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: articles.length,
+              childCount: filteredArticles.length,
               (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom:18.0),
+                  padding: const EdgeInsets.only(bottom:25.0),
                   child: NewsTile(
-                    articleModel: articles[index],
+                    articleModel: filteredArticles[index],
                   ),
                 );
               },
