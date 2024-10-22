@@ -31,7 +31,9 @@ class HomeView extends StatelessWidget {
               Text(
                 'Clouds',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.orange),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange,
+                ),
               ),
             ],
           ),

@@ -10,7 +10,9 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return  CategoryView(categoryName: categoryItem.categoryName,);
+          return CategoryView(
+            categoryName: categoryItem.categoryName,
+          );
         }));
       },
       child: Container(
@@ -19,13 +21,18 @@ class CategoryCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           image: DecorationImage(
-              image: AssetImage(categoryItem.image), fit: BoxFit.fill),
+            image: AssetImage(categoryItem.image),
+            fit: BoxFit.fill,
+          ),
         ),
         child: Center(
           child: Text(
             categoryItem.categoryName,
             style: const TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
