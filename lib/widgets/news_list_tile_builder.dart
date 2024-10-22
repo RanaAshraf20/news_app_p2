@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/services/news_service.dart';
+import 'package:news_app/widgets/indicator.dart';
 import 'package:news_app/widgets/news_tile_list_view.dart';
 
 class NewsTileListViewBuilder extends StatefulWidget {
@@ -31,8 +32,8 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
             child: Center(child: Text('oops there is a problem, try later!')),
           );
         } else {
-          return const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
+          return const SliverFillRemaining(
+            child: Center(child:Indicator()),
           );
         }
       },
