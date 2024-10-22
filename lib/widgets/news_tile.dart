@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/views/web_view.dart';
+import 'package:news_app/widgets/indicator.dart';
 
 class NewsTile extends StatelessWidget {
   NewsTile({
@@ -24,8 +25,11 @@ class NewsTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: CachedNetworkImage(
-              imageUrl: articleModel.image??" https://blog.tipranks.com/wp-content/uploads/2024/10/shutterstock_2518436723-750x406.jpg",
-              placeholder: (context, url) => const CircularProgressIndicator(),
+              imageUrl: articleModel.image ??
+              'https://t4.ftcdn.net/jpg/07/95/29/45/240_F_795294547_gaBzWLhkAYBSz1ZUIZssHhvzGzstNmHK.jpg',
+              placeholder: (context, url) => const Center(
+                child: Indicator(),
+              ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               height: 200,
               width: double.infinity,
@@ -51,7 +55,7 @@ class NewsTile extends StatelessWidget {
           Text(
             articleModel.subTitle ?? '',
             style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.grey),
+                fontSize: 16, color: Colors.grey),
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
           ),
@@ -60,3 +64,4 @@ class NewsTile extends StatelessWidget {
     );
   }
 }
+
