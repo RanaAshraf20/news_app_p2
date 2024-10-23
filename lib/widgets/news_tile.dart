@@ -26,10 +26,8 @@ class NewsTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             child: CachedNetworkImage(
               imageUrl: articleModel.image ??
-              'https://t4.ftcdn.net/jpg/07/95/29/45/240_F_795294547_gaBzWLhkAYBSz1ZUIZssHhvzGzstNmHK.jpg',
-              placeholder: (context, url) => const Center(
-                child: Indicator(),
-              ),
+                  "https://www.svgrepo.com/show/340721/no-image.svg",
+              placeholder: (context, url) =>const Center(child: Indicator()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               height: 200,
               width: double.infinity,
@@ -55,7 +53,7 @@ class NewsTile extends StatelessWidget {
           Text(
             articleModel.subTitle ?? '',
             style: const TextStyle(
-                fontSize: 16, color: Colors.grey),
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.grey),
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
           ),
@@ -64,4 +62,3 @@ class NewsTile extends StatelessWidget {
     );
   }
 }
-
