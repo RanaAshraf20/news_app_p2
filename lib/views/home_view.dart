@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/views/search_view.dart';
 import 'package:news_app/widgets/categories_list_view.dart';
 import 'package:news_app/widgets/news_list_tile_builder.dart';
 
@@ -20,9 +21,21 @@ class HomeView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          centerTitle: true,
           elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return SearchView();
+              }));
+            },
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
+          ),
           title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'News',
