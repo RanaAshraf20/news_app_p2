@@ -9,7 +9,6 @@ class NewsTileListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     final filteredArticles =
         articles.where((article) => article.title != "[Removed]").toList();
 
