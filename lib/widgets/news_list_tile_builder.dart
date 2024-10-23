@@ -5,19 +5,37 @@ import 'package:news_app/widgets/indicator.dart';
 import 'package:news_app/widgets/news_tile_list_view.dart';
 
 class NewsTileListViewBuilder extends StatefulWidget {
-  const NewsTileListViewBuilder({super.key, required this.category});
+  const NewsTileListViewBuilder({super.key, required this.category, this.word});
   final String category;
+  final String? word;
+
   @override
   State<NewsTileListViewBuilder> createState() =>
       _NewsTileListViewBuilderState();
 }
 
 class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
-  var future;
+  late Future<List<ArticleModel>> future;
+
   @override
   void initState() {
     super.initState();
-    future = NewsService().generalNews(category: widget.category);
+    getNews();
+  }
+
+  @override
+  void didUpdateWidget(covariant NewsTileListViewBuilder oldWidget) {
+    // Check if the search word has changed and update the news accordingly
+    if (widget.word != oldWidget.word) {
+      getNews();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void getNews() {
+    future =
+        NewsService().generalNews(category: widget.category, word: widget.word);
+
   }
 
   @override
@@ -25,28 +43,24 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
     return FutureBuilder<List<ArticleModel>>(
       future: future,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return NewsTileListView(articles: snapshot.data!);
-        } else if (snapshot.hasError) {
-          return const SliverToBoxAdapter(
-            child: Center(child: Text('oops there is a problem, try later!')),
-          );
-        } else {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const SliverFillRemaining(
             child: Center(child: Indicator()),
+          );
+        } else if (snapshot.hasError) {
+          return const SliverToBoxAdapter(
+            child: Center(
+                child:
+                    Text('Oops, there is a problem. Please try again later!')),
+          );
+        } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          return NewsTileListView(articles: snapshot.data!);
+        } else {
+          return const SliverToBoxAdapter(
+            child: Center(child: Text('No results found. Try another search!')),
           );
         }
       },
     );
-    // return isLoading
-    //     ? const SliverToBoxAdapter(
-    //         child: Center(child: CircularProgressIndicator()),
-    //       )
-    //     : articles.isNotEmpty
-    //         ? NewsTileListView(articles: articles)
-    //         : const SliverToBoxAdapter(
-    //             child:
-    //                 Center(child: Text('oops there is a problem, try later!')),
-    //           );
   }
 }
