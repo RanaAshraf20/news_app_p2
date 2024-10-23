@@ -33,7 +33,7 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
           );
         } else {
           return const SliverFillRemaining(
-            child: Center(child:Indicator()),
+            child: Center(child: Indicator()),
           );
         }
       },
