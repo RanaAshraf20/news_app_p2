@@ -4,10 +4,16 @@ import 'package:news_app/models/article_model.dart';
 class NewsService {
   final dio = Dio();
 
-  Future<List<ArticleModel>> generalNews({required String category}) async {
+  Future<List<ArticleModel>> generalNews(
+      {required String category, String? word}) async {
     try {
-      Response response = await dio.get(
-          'https://newsapi.org/v2/top-headlines?apiKey=4f808119ea5249b39ff6b21ae0caa11e&category=$category');
+      String url =
+          'https://newsapi.org/v2/top-headlines?apiKey=59961213826347ddbf77a740e1f113d1&category=$category';
+      if (word != null && word.isNotEmpty) {
+        url += '&q=$word';
+      }
+
+      Response response =await dio.get(url);
 
       Map<String, dynamic> jsonData = response.data;
       List<dynamic> articles = jsonData['articles'];
