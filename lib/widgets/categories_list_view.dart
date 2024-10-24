@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/category_model.dart';
-import 'package:news_app/widgets/category_card.dart';
+import 'package:news_app/components/category_card.dart';
 
 class CategorisListView extends StatelessWidget {
   CategorisListView({super.key, required this.categoryList});
