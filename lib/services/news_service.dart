@@ -23,6 +23,7 @@ class NewsService {
         ArticleModel articleModel = ArticleModel.fromJson(article);
         articlesList.add(articleModel);
       }
+        articlesList = articlesList.where((article) => article.title != "[Removed]").toList();
       return articlesList;
     } catch (e) {
       return [];
