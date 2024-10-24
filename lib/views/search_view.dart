@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/customAppBar.dart';
 import 'package:news_app/widgets/news_list_tile_builder.dart';
 
 class SearchView extends StatefulWidget {
@@ -16,28 +17,8 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-        elevation: 0,
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'News',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'Clouds',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.orange,
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Padding(
+      appBar:CustomAppBar() ,
+       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: CustomScrollView(
           slivers: [
@@ -55,6 +36,7 @@ class _SearchViewState extends State<SearchView> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     hintText: 'Search...',
+                    hintStyle: TextStyle(color: Colors.grey),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.orange))),
@@ -62,9 +44,9 @@ class _SearchViewState extends State<SearchView> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 20,
+                height: 30,
               ),
-            ),
+            ), 
             NewsTileListViewBuilder(category: 'general',word: textQuery,)
           ],
         ),
