@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/services/news_service.dart';
-import 'package:news_app/widgets/indicator.dart';
-import 'package:news_app/widgets/news_tile_list_view.dart';
+import 'package:news_app/components/indicator.dart';
+import 'package:news_app/views/news_tile_list_view.dart';
 
 class NewsTileListViewBuilder extends StatefulWidget {
   const NewsTileListViewBuilder({super.key, required this.category, this.word});
@@ -25,17 +25,16 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
 
   @override
   void didUpdateWidget(covariant NewsTileListViewBuilder oldWidget) {
-    // Check if the search word has changed and update the news accordingly
     if (widget.word != oldWidget.word) {
       getNews();
     }
     super.didUpdateWidget(oldWidget);
   }
 
+
   void getNews() {
     future =
         NewsService().generalNews(category: widget.category, word: widget.word);
-
   }
 
   @override
@@ -44,9 +43,7 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SliverFillRemaining(
-            child: Center(child: Indicator()),
-          );
+          return SliverToBoxAdapter(child: Center(child: Indicator()));
         } else if (snapshot.hasError) {
           return const SliverToBoxAdapter(
             child: Center(
