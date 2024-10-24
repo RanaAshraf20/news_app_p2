@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/models/article_model.dart';
-import 'package:news_app/models/category_model.dart';
+import 'package:news_app/components/customAppBar.dart';
+
 import 'package:news_app/widgets/news_list_tile_builder.dart';
 
 class CategoryView extends StatelessWidget {
@@ -9,27 +9,7 @@ class CategoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'News',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Clouds',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.orange,
-                ),
-              ),
-            ],
-          ),
-        ),
+        appBar: CustomAppBar(),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(20),
