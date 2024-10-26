@@ -5,7 +5,8 @@ import 'package:news_app/components/indicator.dart';
 class CachedImage extends StatelessWidget {
   const CachedImage({
     super.key,
-    required this.image, required this.alternativeImage,
+    required this.image,
+    required this.alternativeImage,
   });
 
   final String? image;

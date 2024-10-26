@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(showSearchIcon: true),
-         body: Padding(
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),

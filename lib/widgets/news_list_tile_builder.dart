@@ -31,7 +31,6 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
     super.didUpdateWidget(oldWidget);
   }
 
-
   void getNews() {
     future =
         NewsService().generalNews(category: widget.category, word: widget.word);

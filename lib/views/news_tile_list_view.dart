@@ -9,8 +9,6 @@ class NewsTileListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         childCount: articles.length,

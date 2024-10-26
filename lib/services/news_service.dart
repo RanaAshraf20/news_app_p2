@@ -13,7 +13,7 @@ class NewsService {
         url += '&q=$word';
       }
 
-      Response response =await dio.get(url);
+      Response response = await dio.get(url);
 
       Map<String, dynamic> jsonData = response.data;
       List<dynamic> articles = jsonData['articles'];
@@ -23,7 +23,9 @@ class NewsService {
         ArticleModel articleModel = ArticleModel.fromJson(article);
         articlesList.add(articleModel);
       }
-        articlesList = articlesList.where((article) => article.title != "[Removed]").toList();
+      articlesList = articlesList
+          .where((article) => article.title != "[Removed]")
+          .toList();
       return articlesList;
     } catch (e) {
       return [];

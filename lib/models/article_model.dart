@@ -1,4 +1,3 @@
-
 class ArticleModel {
   final String? image;
   final String title;
