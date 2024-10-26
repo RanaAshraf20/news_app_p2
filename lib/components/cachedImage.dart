@@ -5,15 +5,15 @@ import 'package:news_app/components/indicator.dart';
 class CachedImage extends StatelessWidget {
   const CachedImage({
     super.key,
-    required this.image,
+    required this.image, required this.alternativeImage,
   });
 
   final String? image;
-
+  final String alternativeImage;
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: image ?? "https://www.svgrepo.com/show/340721/no-image.svg",
+      imageUrl: image ?? alternativeImage,
       placeholder: (context, url) => const Center(child: Indicator()),
       errorWidget: (context, url, error) => const Icon(Icons.error),
       height: 200,
