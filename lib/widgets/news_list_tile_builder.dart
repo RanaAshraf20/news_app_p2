@@ -42,7 +42,7 @@ class _NewsTileListViewBuilderState extends State<NewsTileListViewBuilder> {
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SliverToBoxAdapter(child: Center(child: Indicator()));
+          return SliverToBoxAdapter(child: Center(child: Indicator(color: Colors.orange,)));
         } else if (snapshot.hasError) {
           return const SliverToBoxAdapter(
             child: Center(
