@@ -12,10 +12,10 @@ class TextInputField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  final String? hintText;
-  final Color? hintColor;
-  final Color? focusedBorderColor;
-  final double? borderRadius;
+  final String hintText;
+  final Color hintColor;
+  final Color focusedBorderColor;
+  final double borderRadius;
   final ValueChanged<String> onSubmitted;
 
   @override
@@ -27,11 +27,11 @@ class TextInputField extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(color: hintColor),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius!),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadius!),
-              borderSide: BorderSide(color: focusedBorderColor!))),
+              borderRadius: BorderRadius.circular(borderRadius),
+              borderSide: BorderSide(color: focusedBorderColor))),
     );
   }
 }
