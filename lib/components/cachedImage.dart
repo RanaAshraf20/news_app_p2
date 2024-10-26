@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/components/indicator.dart';
@@ -15,7 +17,7 @@ class CachedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: image ?? alternativeImage,
-      placeholder: (context, url) => const Center(child: Indicator()),
+      placeholder: (context, url) => const Center(child: Indicator(color: Colors.orange,)),
       errorWidget: (context, url, error) => const Icon(Icons.error),
       height: 200,
       width: double.infinity,
